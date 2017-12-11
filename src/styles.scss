@@ -1,3 +1,11 @@
+// custom variables
 @import 'style/variables';
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// reboot 
+@import 'style/reboot';
+// gloabl style
 @import 'style/global';
+// angular metarial theme
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// project custome theme
+@import 'style/theme';
+

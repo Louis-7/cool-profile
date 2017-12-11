@@ -6,17 +6,25 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 
 // import angular material components
-import { OwnAngularMaterialModule } from './shared/own-angular-material/own-angular-material.module'
+import { OwnAngularMaterialModule } from './shared/own-angular-material/own-angular-material.module';
+
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { BlogComponent } from './blog/blog.component'
+
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     OwnAngularMaterialModule,
-    CoreModule
+    CoreModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
