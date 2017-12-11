@@ -19,3 +19,4 @@ $cool-app-theme: mat-light-theme($cool-app-primary, $cool-app-accent, $cool-app-
 @include angular-material-theme($cool-app-theme);
 
 @import 'core/nav';
+@import 'core/footer';

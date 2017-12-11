@@ -1,0 +1,20 @@
+@mixin footer-component-theme($theme) {
+    $basic: mat-palette($mat-light-blue, 50);
+    $primary: map-get($theme, primary);
+    footer {
+        background-color: mat-color($primary);
+        .footer-list {
+            color: $white-87-opacity;
+            background-color: mat-color($primary);
+            margin: 0 auto;
+            & a {
+                font-weight: bold;
+            }
+            & a:visited {
+                color: $white-87-opacity;
+            }
+        }
+    }
+}
+
+@include footer-component-theme($cool-app-theme);
