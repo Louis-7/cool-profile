@@ -1,0 +1,13 @@
+@mixin ng-button-theme($theme) {
+    $font-color: mat-palette($mat-grey, 50);
+    .mat-raised-button {
+        color: mat-color($font-color);
+        &.mat-basic,
+        &.mat-primary,
+        &.mat-accent {
+            color: mat-color($font-color);
+        }
+    }
+}
+
+@include ng-button-theme($cool-app-theme);

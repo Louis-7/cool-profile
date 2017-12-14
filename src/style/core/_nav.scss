@@ -1,5 +1,5 @@
 @mixin nav-component-theme($theme) {
-    $primary: map-get($theme, primary);
+    $primary: $component-brackground-color;
     $accent: map-get($theme, accent);
     .nav-theme {
         background-color: mat-color($primary);

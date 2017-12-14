@@ -1,6 +1,5 @@
 @mixin footer-component-theme($theme) {
-    $basic: mat-palette($mat-light-blue, 50);
-    $primary: map-get($theme, primary);
+    $primary: $component-brackground-color;
     footer {
         background-color: mat-color($primary);
         .footer-list {
