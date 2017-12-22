@@ -1,35 +1,64 @@
-.scroll-board-container {
-    width: 100%;
-    height: 300px;
-    .scroll-board {
-        display: inline-block;
-        width: 95%;
-        height: inherit;
-        img {
+    .scroll-board-container {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        .scroll-board {
+            display: inline-block;
+            width: 95%;
             height: inherit;
-            max-width: 100%;
-        }
-    }
-    .scroll-index {
-        display: table;
-        width: 5%;
-        height: 100%;     
-        div {          
-            display: table-cell;
-            vertical-align: middle;          
-            line-height: 100%;
-            i {         
+            overflow: hidden;
+            .scroll-img-container {
+                position: relative;
+                display: none;
+                height: 100%;
+                transition: transform 1s ease;
+                .scroll-item {
+                    height: inherit;
+                    max-width: 100%;
+                }
+            }
+            .scroll-img-container.active,
+            .scroll-img-container-next,
+            .scroll-img-container-prev {
                 display: block;
-                width: 8px;
-                height: 8px;
-                background-color: #eee;
-                border-radius: 8px;
-                margin-bottom: 8px;
             }
-
-            i:last-child{
-                margin-bottom: 0;
+            .scroll-img-container-next,
+            .scroll-img-container-prev {
+                position: absolute;
+                top: 0;
+            }
+            .scroll-img-container-next.scroll-img-container-down,
+            .scroll-img-container-prev.scroll-img-container-up {
+                transform: translateY(0);
+            }
+            .scroll-img-container-next,
+            .active.scroll-img-container-down {
+                transform: translateY(100%);
+            }
+            .scroll-img-container-prev,
+            .active.scroll-img-container-up {
+                transform: translateY(-100%);
+            }
+        }
+        .scroll-index {
+            display: table;
+            width: 5%;
+            height: 100%;
+            div {
+                display: table-cell;
+                vertical-align: middle;
+                line-height: 100%;
+                i {
+                    display: block;
+                    width: 8px;
+                    height: 8px;
+                    background-color: #eee;
+                    border-radius: 8px;
+                    margin: 4px auto;
+                }
+                i:last-child {
+                    margin-bottom: 0;
+                }
             }
         }
     }
-}
