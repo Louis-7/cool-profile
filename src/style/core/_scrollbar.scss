@@ -1,0 +1,13 @@
+@mixin scroll-board-component-theme($theme) {
+    .scroll-board-container::selection{
+        background-color: transparent;
+    }
+    .scroll-board-controll-prev,
+    .scroll-board-controll-next {
+       .mat-icon{
+           color: #fff;
+       }
+    }
+}
+
+@include scroll-board-component-theme($cool-app-theme);

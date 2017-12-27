@@ -1,37 +1,74 @@
-<div class="site-wrapper">
+<app-nav></app-nav>
 
-  <div class="site-wrapper-inner">
-
-    <div class="cover-container">
-
-      <div class="masthead clearfix">
-        <div class="inner">
-          <h3 class="masthead-brand">Cool Blog</h3>
-          <nav class="nav nav-masthead">
-            <a class="nav-link active" href="#">Home</a>
-            <a class="nav-link" href="#">Features</a>
-            <a class="nav-link" href="#">Contact</a>
-          </nav>
-        </div>
-      </div>
-
-      <div class="inner cover">
-        <!-- <h1 class="cover-heading">This is a cool profile site.</h1>
-        <p class="lead">This site is use for show front-end skill. Will add more component to the site. </p>
-        <p class="lead">
-          <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
-        </p> -->
-        <app-scroll-board></app-scroll-board>
-      </div>
-
-      <div class="mastfoot">
-        <div class="inner">
-          <p>Cover template for <a href="https://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-        </div>
-      </div>
-
-    </div>
-
+<div class="app-container">
+  <div class="app-page-container">
+    <router-outlet></router-outlet>
   </div>
-
+  <app-footer></app-footer>
 </div>
+<!-- <app-scroll-board></app-scroll-board> -->
+
+<!-- <h3>Basic Buttons</h3>
+<div class="button-row">
+  <button mat-button>Basic</button>
+  <button mat-button color="primary">Primary</button>
+  <button mat-button color="accent">Accent</button>
+  <button mat-button color="warn">Warn</button>
+  <button mat-button disabled>Disabled</button>
+  <a mat-button routerLink=".">Link</a>
+</div>
+
+<h3>Raised Buttons</h3>
+<div class="button-row">
+  <button mat-raised-button><mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>Basic</button>
+  <button mat-raised-button color="primary">Primary</button>
+  <button mat-raised-button color="accent">Accent</button>
+  <button mat-raised-button color="warn">Warn</button>
+  <button mat-raised-button disabled>Disabled</button>
+  <a mat-raised-button routerLink="."><mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>Link</a>
+</div>
+
+<h3>Icon Buttons</h3>
+<div class="button-row">
+  <button mat-icon-button>
+    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+  </button>
+  <button mat-icon-button color="primary">
+    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+  </button>
+  <button mat-icon-button color="accent">
+    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+  </button>
+  <button mat-icon-button color="warn">
+    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+  </button>
+  <button mat-icon-button disabled>
+    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+  </button>
+</div>
+
+<h3>Fab Buttons</h3>
+<div class="button-row">
+  <button mat-fab>Basic</button>
+  <button mat-fab color="primary">Primary</button>
+  <button mat-fab color="accent">Accent</button>
+  <button mat-fab color="warn">Warn</button>
+  <button mat-fab disabled>Disabled</button>
+  <button mat-fab>
+    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+  </button>
+  <a mat-fab routerLink=".">Link</a>
+</div>
+
+<h3>Mini Fab Buttons</h3>
+<div class="button-row">
+  <button mat-mini-fab>Basic</button>
+  <button mat-mini-fab color="primary">Primary</button>
+  <button mat-mini-fab color="accent">Accent</button>
+  <button mat-mini-fab color="warn">Warn</button>
+  <button mat-mini-fab disabled>Disabled</button>
+  <button mat-mini-fab>
+    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+  </button>
+  <a mat-mini-fab routerLink=".">Link</a>
+</div> -->

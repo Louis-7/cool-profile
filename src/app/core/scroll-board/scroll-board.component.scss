@@ -1,35 +1,88 @@
-.scroll-board-container {
-    width: 100%;
-    height: 300px;
-    .scroll-board {
-        display: inline-block;
-        width: 95%;
-        height: inherit;
-        img {
-            height: inherit;
-            max-width: 100%;
-        }
-    }
-    .scroll-index {
-        display: table;
-        width: 5%;
-        height: 100%;     
-        div {          
-            display: table-cell;
-            vertical-align: middle;          
-            line-height: 100%;
-            i {         
+    .scroll-board-container {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        .scroll-board-inner {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            .scroll-board-item {
+                position: relative;
+                display: none;
+                height: 100%;
+                transition: transform .5s ease;
+                overflow: hidden;
+                * {
+                    width: 100%;
+                }
+            }
+            .scroll-board-item.active,
+            .scroll-board-next,
+            .scroll-board-prev {
                 display: block;
-                width: 8px;
-                height: 8px;
-                background-color: #eee;
-                border-radius: 8px;
-                margin-bottom: 8px;
             }
-
-            i:last-child{
-                margin-bottom: 0;
+            .scroll-board-next,
+            .scroll-board-prev {
+                position: absolute;
+                top: 0;
+            }
+            .scroll-board-prev.scroll-board-down,
+            .scroll-board-next.scroll-board-up {
+                transform: translateY(0);
+            }
+            .scroll-board-next,
+            .active.scroll-board-down {
+                transform: translateY(100%);
+            }
+            .scroll-board-prev,
+            .active.scroll-board-up {
+                transform: translateY(-100%);
             }
         }
+        .scroll-index {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: table;
+            width: 5%;
+            height: 100%;
+            div {
+                display: table-cell;
+                vertical-align: middle;
+                line-height: 100%;
+                i {
+                    display: block;
+                    width: 8px;
+                    height: 8px;
+                    background-color: #eee;
+                    border-radius: 8px;
+                    margin: 4px auto;
+                }
+                i:last-child {
+                    margin-bottom: 0;
+                }
+
+                i.active {
+                   background-color: #999; 
+                }
+            }
+        }
+        .scroll-board-controll {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .scroll-board-controll.scroll-board-controll-prev {
+            left: 0;
+        }
+        .scroll-board-controll.scroll-board-controll-next {
+            right: 0;
+        }
     }
-}
