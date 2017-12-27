@@ -1,12 +1,18 @@
-<div class="scroll-board-container">
-  <div class="scroll-board float-left">
-    <div class="scroll-img-container" [ngClass]="img.cssClass" *ngFor="let img of scrollBoard">
+<div class="scroll-board-container" (wheel)="onWheelHandler($event)">
+  <div class="scroll-board-inner float-left" >
+    <div class="scroll-board-item" [ngClass]="img.cssClass" *ngFor="let img of scrollBoard">
       <img class="scroll-item" src="{{img.imgUrl}}" alt="under the iron sea">
     </div>
   </div>
-  <div class="scroll-index float-right" (click)="scrollPrev()">
+  <!-- <div class="scroll-index float-right" (click)="scrollPrev()">
     <div>
       <i *ngFor="let item of scrollBoard" class="scroll-board-index-point"></i>
     </div>
-  </div>
+  </div> -->
+  <a class="scroll-board-controll scroll-board-controll-prev" (click)="scrollPrev()">
+    <mat-icon aria-hidden="true">navigate_before</mat-icon>  
+  </a>
+  <a class="scroll-board-controll scroll-board-controll-next" (click)="scrollNext()">
+    <mat-icon aria-hidden="true">navigate_next</mat-icon>  
+  </a>
 </div>

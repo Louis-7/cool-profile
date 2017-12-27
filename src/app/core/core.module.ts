@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 
 // import angular material components
 import { OwnAngularMaterialModule } from '../shared/own-angular-material/own-angular-material.module';
@@ -12,8 +13,10 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     CommonModule,
     RouterModule,
-    OwnAngularMaterialModule
+    OwnAngularMaterialModule,
+    ScrollDispatchModule
   ],
+  providers: [],
   declarations: [ScrollBoardComponent, NavComponent, FooterComponent],
   exports: [ScrollBoardComponent, NavComponent, FooterComponent],
 })

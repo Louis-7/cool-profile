@@ -1,31 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { throttle } from 'lodash/function';
 
 @Component({
   selector: 'app-scroll-board',
   templateUrl: './scroll-board.component.html',
   styleUrls: ['./scroll-board.component.scss']
 })
-export class ScrollBoardComponent implements OnInit {
+export class ScrollBoardComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  options = {
+    triggerTime: 1,
+    animateTime: 600,
   }
 
   scrollBoard: any[] = [
     {
       cssClass: ['active'],
-      imgUrl: 'https://i.imgur.com/MV9SvaP.jpg',
+      imgUrl: 'https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg',
     },
     {
       cssClass: [],
-      imgUrl: 'https://i.imgur.com/kXUHDn5.jpg',
+      imgUrl: 'https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg',
     },
     {
       cssClass: [],
-      imgUrl: 'https://i.imgur.com/Qmz61wo.jpg',
+      imgUrl: 'https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg',
     },
   ];
+
+  constructor() {
+
+    this.options.animateTime += this.options.triggerTime;
+  }
+
+  ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
+
+  }
 
   scrollIndexHeightCal() {
     return {
@@ -56,6 +70,16 @@ export class ScrollBoardComponent implements OnInit {
     this.setActiveTab(this.indexCalculator(this.currentIndex() - 1), 'prev');
   }
 
+  public indexCalculator(index: number): number {
+    let maxIndex = this.scrollBoard.length - 1;
+    if (index > maxIndex) {
+      return 0;
+    } else if (index < 0) {
+      return maxIndex;
+    } else {
+      return index;
+    }
+  }
 
   public setActiveTab(index: number, direction?: string) {
 
@@ -68,28 +92,33 @@ export class ScrollBoardComponent implements OnInit {
 
     switch (direction) {
       case "next":
-        directiveClass = "scroll-img-container-next";
-        animateClass = "scroll-img-container-down";
+        directiveClass = "scroll-board-next";
+        animateClass = "scroll-board-up";
         originIndex = this.indexCalculator(index - 1);
         break;
       case "prev":
-        directiveClass = "scroll-img-container-prev";
-        animateClass = "scroll-img-container-up";
-        originIndex = this.indexCalculator(index +  1);
+        directiveClass = "scroll-board-prev";
+        animateClass = "scroll-board-down";
+        originIndex = this.indexCalculator(index + 1);
         break;
       default:
         break;
     }
 
-    this.scrollBoard[originIndex].cssClass.push(animateClass);
-    this.scrollBoard[index].cssClass.push(animateClass);
-    this.scrollBoard[index].cssClass.push(directiveClass);
+    // push class prepare next item's animation
+    this.scrollBoard[index].cssClass.push(directiveClass); // prev | next
+    this.scrollBoard[index].cssClass.push(animateClass);   // up | down
 
+    // trigger animation
     setTimeout(() => {
-      this.scrollBoard[originIndex].cssClass.splice(this.scrollBoard[originIndex].cssClass.indexOf(animateClass), 1);
+      this.scrollBoard[originIndex].cssClass.push(animateClass);
       this.scrollBoard[index].cssClass.splice(this.scrollBoard[index].cssClass.indexOf(animateClass), 1);
-      this.scrollBoard[index].cssClass.splice(this.scrollBoard[index].cssClass.indexOf(directiveClass), 1);
+    }, this.options.triggerTime)
 
+
+
+    // wait for animation over
+    setTimeout(() => {
       for (let item of this.scrollBoard) {
         let loopIndex = this.scrollBoard.indexOf(item);
 
@@ -100,17 +129,18 @@ export class ScrollBoardComponent implements OnInit {
           activeIndex > -1 ? item.cssClass.splice(activeIndex, 1) : null;
         }
       }
-    }, 1000);
+      this.scrollBoard[index].cssClass.splice(this.scrollBoard[index].cssClass.indexOf(directiveClass), 1);
+      this.scrollBoard[originIndex].cssClass.splice(this.scrollBoard[originIndex].cssClass.indexOf(animateClass), 1);
+    }, this.options.animateTime);
   }
 
-  public indexCalculator(index: number): number {
-    let maxIndex = this.scrollBoard.length - 1;
-    if (index > maxIndex) {
-      return 0;
-    } else if (index < 0) {
-      return maxIndex;
-    } else {
-      return index;
-    }
-  }
+
+  onWheelHandler = throttle((event: WheelEvent): void => {
+    // scroll up & scroll down
+    if (event.wheelDeltaY > 0) {
+      this.scrollPrev();
+    } else if (event.wheelDeltaY < 0) {
+      this.scrollNext();
+    }   
+  }, this.options.animateTime);
 }
