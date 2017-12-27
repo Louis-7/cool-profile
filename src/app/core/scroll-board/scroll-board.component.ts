@@ -9,8 +9,7 @@ import { throttle } from 'lodash/function';
 export class ScrollBoardComponent implements OnInit, AfterViewInit {
 
   options = {
-    triggerTime: 1,
-    animateTime: 600,
+    animateTime: 500,
   }
 
   scrollBoard: any[] = [
@@ -29,8 +28,6 @@ export class ScrollBoardComponent implements OnInit, AfterViewInit {
   ];
 
   constructor() {
-
-    this.options.animateTime += this.options.triggerTime;
   }
 
   ngOnInit() {
@@ -104,18 +101,13 @@ export class ScrollBoardComponent implements OnInit, AfterViewInit {
       default:
         break;
     }
-
-    // push class prepare next item's animation
-    this.scrollBoard[index].cssClass.push(directiveClass); // prev | next
-    this.scrollBoard[index].cssClass.push(animateClass);   // up | down
-
+    
+    this.scrollBoard[index].cssClass.push(directiveClass);      // prev | next
     // trigger animation
     setTimeout(() => {
-      this.scrollBoard[originIndex].cssClass.push(animateClass);
-      this.scrollBoard[index].cssClass.splice(this.scrollBoard[index].cssClass.indexOf(animateClass), 1);
-    }, this.options.triggerTime)
-
-
+      this.scrollBoard[index].cssClass.push(animateClass);   // up | down
+      this.scrollBoard[originIndex].cssClass.push(animateClass);  // up | down
+    })
 
     // wait for animation over
     setTimeout(() => {
@@ -130,6 +122,7 @@ export class ScrollBoardComponent implements OnInit, AfterViewInit {
         }
       }
       this.scrollBoard[index].cssClass.splice(this.scrollBoard[index].cssClass.indexOf(directiveClass), 1);
+      this.scrollBoard[index].cssClass.splice(this.scrollBoard[index].cssClass.indexOf(animateClass), 1);
       this.scrollBoard[originIndex].cssClass.splice(this.scrollBoard[originIndex].cssClass.indexOf(animateClass), 1);
     }, this.options.animateTime);
   }
@@ -141,6 +134,6 @@ export class ScrollBoardComponent implements OnInit, AfterViewInit {
       this.scrollPrev();
     } else if (event.wheelDeltaY < 0) {
       this.scrollNext();
-    }   
-  }, this.options.animateTime);
+    }
+  }, this.options.animateTime * 2 + 100);
 }

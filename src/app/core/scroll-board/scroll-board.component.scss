@@ -9,41 +9,34 @@
             height: 100%;
             overflow: hidden;
             .scroll-board-item {
-                position: absolute;
-                top: 0;
+                position: relative;
                 display: none;
                 height: 100%;
-                transition: all .5s ease;
+                transition: transform .5s ease;
                 overflow: hidden;
                 * {
                     width: 100%;
                 }
-            }        
+            }
             .scroll-board-item.active,
             .scroll-board-next,
-            .scroll-board-prev {    
+            .scroll-board-prev {
                 display: block;
             }
-            // .scroll-board-next {
-            //     position: absolute;
-            //     top: 100%;
-            // }
-            // .scroll-board-prev {
-            //     position: absolute;
-            //     top:-100%;
-
-            // }
-            .scroll-board-prev.scroll-board-down {
-                transform: translateY(-100%);
+            .scroll-board-next,
+            .scroll-board-prev {
+                position: absolute;
+                top: 0;
             }
+            .scroll-board-prev.scroll-board-down,
             .scroll-board-next.scroll-board-up {
-                transform: translateY(100%);
+                transform: translateY(0);
             }
-            
+            .scroll-board-next,
             .active.scroll-board-down {
                 transform: translateY(100%);
             }
-            
+            .scroll-board-prev,
             .active.scroll-board-up {
                 transform: translateY(-100%);
             }
