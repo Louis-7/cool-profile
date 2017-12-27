@@ -1,18 +1,18 @@
 <div class="scroll-board-container" (wheel)="onWheelHandler($event)">
-  <div class="scroll-board-inner float-left" >
-    <div class="scroll-board-item" [ngClass]="img.cssClass" *ngFor="let img of scrollBoard">
-      <img class="scroll-item" src="{{img.imgUrl}}" alt="under the iron sea">
+  <div class="scroll-board-inner">
+    <div class="scroll-board-item" [ngClass]="item.cssClass" *ngFor="let item of scrollBoard">
+      <img class="scroll-item" src="{{item.imgUrl}}" alt="under the iron sea">
     </div>
   </div>
-  <!-- <div class="scroll-index float-right" (click)="scrollPrev()">
+  <div class="scroll-index">
     <div>
-      <i *ngFor="let item of scrollBoard" class="scroll-board-index-point"></i>
+      <i *ngFor="let item of scrollBoard" class="scroll-board-index-point" [ngClass]="{'active':item.cssClass.indexOf('active') > -1}"></i>
     </div>
-  </div> -->
-  <a class="scroll-board-controll scroll-board-controll-prev" (click)="scrollPrev()">
+  </div>
+  <!-- <a class="scroll-board-controll scroll-board-controll-prev" (click)="scrollPrev()">
     <mat-icon aria-hidden="true">navigate_before</mat-icon>  
   </a>
   <a class="scroll-board-controll scroll-board-controll-next" (click)="scrollNext()">
     <mat-icon aria-hidden="true">navigate_next</mat-icon>  
-  </a>
+  </a> -->
 </div>

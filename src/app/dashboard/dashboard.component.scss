@@ -1,8 +1,12 @@
-.dashborad-container {
+.dashboard-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100%;
-    width: 720px;
-    margin: 0 auto;    
+    width: 100%;
+    margin: 0 auto;
+    .dashboard-scroll-container {
+        margin: 0 auto;
+        width: 720px;
+    }
 }
