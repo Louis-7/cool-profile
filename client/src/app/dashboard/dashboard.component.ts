@@ -19,11 +19,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.renderer = this.threeDrawService.dashBoardScene(this.dashContainerDOM);
+    // this.renderer = this.threeDrawService.dashBoardScene(this.dashContainerDOM);
     // this.particlesService.load('particles-background','./assets/config/particles.json');
   }
 
-  @HostListener('window:resize', ['$event']) onResize($event) {
-    this.renderer.setSize(this.dashContainerDOM.nativeElement.clientWidth, this.dashContainerDOM.nativeElement.clientHeight);
-  }
+  // @HostListener('window:resize', ['$event']) onResize($event) {
+  //   this.renderer.setSize(this.dashContainerDOM.nativeElement.clientWidth, this.dashContainerDOM.nativeElement.clientHeight);
+  // }
 }
